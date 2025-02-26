@@ -12,6 +12,7 @@
 		FB2947E62D6F798F00CD7E72 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB2947E52D6F798F00CD7E72 /* Preview Assets.xcassets */; };
 		FB2947ED2D6F7C3100CD7E72 /* PantallaAgenda.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2947EC2D6F7C3100CD7E72 /* PantallaAgenda.swift */; };
 		FB2947F02D6F7FC300CD7E72 /* contacto_preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2947EF2D6F7FC300CD7E72 /* contacto_preview.swift */; };
+		FB2947F32D6F871400CD7E72 /* contacto_agenda.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2947F22D6F871400CD7E72 /* contacto_agenda.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		FB2947E52D6F798F00CD7E72 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FB2947EC2D6F7C3100CD7E72 /* PantallaAgenda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantallaAgenda.swift; sourceTree = "<group>"; };
 		FB2947EF2D6F7FC300CD7E72 /* contacto_preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = contacto_preview.swift; sourceTree = "<group>"; };
+		FB2947F22D6F871400CD7E72 /* contacto_agenda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = contacto_agenda.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		FB2947DD2D6F798E00CD7E72 /* Agenda_shuffle */ = {
 			isa = PBXGroup;
 			children = (
+				FB2947F12D6F85B200CD7E72 /* modelos */,
 				FB2947EE2D6F7F6400CD7E72 /* componentes */,
 				FB2947DE2D6F798E00CD7E72 /* Agenda_shuffleApp.swift */,
 				FB2947E22D6F798F00CD7E72 /* Assets.xcassets */,
@@ -76,6 +79,14 @@
 				FB2947EF2D6F7FC300CD7E72 /* contacto_preview.swift */,
 			);
 			path = componentes;
+			sourceTree = "<group>";
+		};
+		FB2947F12D6F85B200CD7E72 /* modelos */ = {
+			isa = PBXGroup;
+			children = (
+				FB2947F22D6F871400CD7E72 /* contacto_agenda.swift */,
+			);
+			path = modelos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +161,7 @@
 			files = (
 				FB2947F02D6F7FC300CD7E72 /* contacto_preview.swift in Sources */,
 				FB2947ED2D6F7C3100CD7E72 /* PantallaAgenda.swift in Sources */,
+				FB2947F32D6F871400CD7E72 /* contacto_agenda.swift in Sources */,
 				FB2947DF2D6F798E00CD7E72 /* Agenda_shuffleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
