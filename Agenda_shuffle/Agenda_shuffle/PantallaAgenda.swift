@@ -36,11 +36,51 @@ struct PantallaAgenda: View {
                     ContactoPreview(contacto_a_mostrar: contacto, alPulsar: {print("te envia saludos \(contacto.nombre) desde la pantalla de agenda")})
                 }
             }
+            
+            .frame(alignment: Alignment.center)
+            .padding(10)
             .background(Color.mint)
-            .frame(width: largo_de_pantalla, alignment: Alignment.center)
 
         }
-        .background(Color.red)
+        HStack(alignment: VerticalAlignment.center, spacing: 25){
+            ZStack{
+                Circle()
+                    .frame(width: 100)
+                    .foregroundColor(.mint)
+                Rectangle()
+                    .frame(width: 65,height: 65)
+                Image(systemName: "plus")
+                    .foregroundColor(.white)
+                    //.offset(x: 0, y: -25)
+               
+                
+            }
+            .padding(15)
+            .onTapGesture {
+                print("Falta implementar esta parte")
+            
+            }
+            Spacer()
+            //Text(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/)
+            ZStack{
+                Circle()
+                    .frame(width: 100)
+                    .foregroundColor(.mint)
+                Rectangle()
+                    .frame(width: 65,height: 65)
+                Image(systemName: "shuffle")
+                    .foregroundColor(.white)
+                    //.offset(x: 0, y: -25)
+               
+                
+            }
+            .padding(15)
+            .onTapGesture {
+                print("lanzar un intent para iniciar la llamada")
+            
+            }
+        }
+        //.background(Color.red)
     }
 }
 

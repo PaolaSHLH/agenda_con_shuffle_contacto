@@ -15,7 +15,7 @@ struct ContactoPreview: View {
     var alPulsar : () -> Void = {print("No se ha implementado")}
     
     var body: some View {
-        HStack(alignment: VerticalAlignment.center){
+        HStack(alignment: VerticalAlignment.center, spacing: 10){
             Spacer()
             VStack{
                 Image("imagen")
@@ -27,16 +27,17 @@ struct ContactoPreview: View {
             
             Spacer()
             
-            VStack(alignment: HorizontalAlignment.leading){
+            VStack(alignment: HorizontalAlignment.leading, spacing: 10){
                 Text(contacto_a_mostrar.nombre)
                 Text(contacto_a_mostrar.telefono)
             }
-            .frame(width: 80)
+            .frame(maxWidth: .infinity, alignment: .leading)
             
             Spacer()
         }
-        .frame(width: 250)
+        .frame(maxWidth: .infinity)
         .background(Color.indigo)
+        .clipShape(RoundedRectangle(cornerSize: CGSize(width: 20, height: 10)))
         .onTapGesture {
             alPulsar()
         }
