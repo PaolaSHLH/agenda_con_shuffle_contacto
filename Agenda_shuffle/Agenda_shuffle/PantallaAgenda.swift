@@ -47,20 +47,23 @@ struct PantallaAgenda: View {
             
             .frame(alignment: Alignment.center)
             .padding(10)
-            .background(Color.mint)
+            //.background(Color.mint)
 
         }
-        .background(Color.pink)
+        //.background(Color.pink)
         
         HStack(alignment: VerticalAlignment.center, spacing: 25){
             ZStack{
                 Circle()
                     .frame(width: 100)
                     .foregroundColor(.mint)
-                Circle()
+               /* Circle()
                     .foregroundColor(.indigo)
-                    .frame(width: 65,height: 65)
+                    .frame(width: 65,height: 65)*/
                 Image(systemName: "plus")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 25)
                     .foregroundColor(.white)
                     //.offset(x: 0, y: -25)
                
@@ -78,10 +81,13 @@ struct PantallaAgenda: View {
                 Circle()
                     .frame(width: 100)
                     .foregroundColor(.mint)
-                Circle()
+                /*Circle()
                     .foregroundColor(.indigo)
-                    .frame(width: 65,height: 65)
+                    .frame(width: 65,height: 65)*/
                 Image(systemName: "shuffle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 25)
                     .foregroundColor(.white)
                     //.offset(x: 0, y: -25)
                
@@ -93,7 +99,7 @@ struct PantallaAgenda: View {
             
             }
         }
-        .background(Color.purple)
+        .background(Color.gray)
         .sheet(isPresented: $mostrar_pantalla_agregar_contacto) {
             pantallaAgregarContacto(boton_salir: {mostrar_pantalla_agregar_contacto.toggle()
             },
