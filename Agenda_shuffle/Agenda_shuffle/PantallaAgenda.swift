@@ -27,11 +27,19 @@ struct PantallaAgenda: View {
     var largo_de_pantalla = UIScreen.main.bounds.width
     var ancho_de_pantalla = UIScreen.main.bounds.height
     
+    @State var contactos_Actuales: [ContactoAgenda] = [
+        ContactoAgenda(nombre: "Chanyeol", telefono: "610497"),
+        ContactoAgenda(nombre: "Sehun", telefono: "123576"),
+        ContactoAgenda(nombre: "Baekhyun", telefono: "049925"),
+        ContactoAgenda(nombre: "Suho", telefono: "610497")
+]
+    @State var mostrar_pantalla_agregar_contacto: Bool = false
+    
     var body: some View {
 
         ScrollView{
             VStack(spacing:10){
-                ForEach(contactos){ contacto in
+                ForEach(contactos_Actuales){ contacto in
                     //Text("\(contacto.nombre)")
                     ContactoPreview(contacto_a_mostrar: contacto, alPulsar: {print("te envia saludos \(contacto.nombre) desde la pantalla de agenda")})
                 }
@@ -42,12 +50,15 @@ struct PantallaAgenda: View {
             .background(Color.mint)
 
         }
+        .background(Color.pink)
+        
         HStack(alignment: VerticalAlignment.center, spacing: 25){
             ZStack{
                 Circle()
                     .frame(width: 100)
                     .foregroundColor(.mint)
-                Rectangle()
+                Circle()
+                    .foregroundColor(.indigo)
                     .frame(width: 65,height: 65)
                 Image(systemName: "plus")
                     .foregroundColor(.white)
@@ -58,6 +69,7 @@ struct PantallaAgenda: View {
             .padding(15)
             .onTapGesture {
                 print("Falta implementar esta parte")
+                mostrar_pantalla_agregar_contacto.toggle()
             
             }
             Spacer()
@@ -66,7 +78,8 @@ struct PantallaAgenda: View {
                 Circle()
                     .frame(width: 100)
                     .foregroundColor(.mint)
-                Rectangle()
+                Circle()
+                    .foregroundColor(.indigo)
                     .frame(width: 65,height: 65)
                 Image(systemName: "shuffle")
                     .foregroundColor(.white)
@@ -80,7 +93,17 @@ struct PantallaAgenda: View {
             
             }
         }
-        //.background(Color.red)
+        .background(Color.purple)
+        .sheet(isPresented: $mostrar_pantalla_agregar_contacto) {
+            pantallaAgregarContacto(boton_salir: {mostrar_pantalla_agregar_contacto.toggle()
+            },
+                                    boton_agregar: {nombre, numero in
+                let contacto_nuevo = ContactoAgenda(nombre: nombre, telefono: numero)
+                contactos_Actuales.append(contacto_nuevo)
+                mostrar_pantalla_agregar_contacto.toggle()
+            }
+            )
+        }
     }
 }
 

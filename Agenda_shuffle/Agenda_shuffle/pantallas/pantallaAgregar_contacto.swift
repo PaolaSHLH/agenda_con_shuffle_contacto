@@ -11,6 +11,15 @@ struct pantallaAgregarContacto: View {
     
     @State private var nombre: String = ""
     @State private var num_telefonico: String = ""
+    
+    var boton_salir: () -> Void = {
+        print("parece que te has equivocado")
+    }
+    var boton_agregar: (_ mombre: String,_ numero: String) -> Void = { nombre, numero in
+        print("parece que te has equivocado")
+
+    }
+    
     var body: some View {
         
         Text("colocar la etiqueta de nombre")
@@ -26,15 +35,22 @@ struct pantallaAgregarContacto: View {
         
         
         Text(verbatim: "Colocar el campo del numero telefonico")
-        TextField("placeholder", text: $nombre)
+        TextField("placeholder", text: $num_telefonico)
             .frame(height: 45)
             .padding(10)
         
         HStack{
+            //Agregar Cont
             Icono(tamaño: 65, ruta_icono: "person.crop.circle.badge.plus", pading: 10)
+                .onTapGesture {
+                    boton_agregar(nombre, num_telefonico)
+                }
             Spacer()
             Icono(tamaño: 65, ruta_icono: "return", pading: 10)
                 .background(nombre == "" ? Color.red: Color .cyan)
+                .onTapGesture {
+                    boton_salir()
+                }
             
         }
         
