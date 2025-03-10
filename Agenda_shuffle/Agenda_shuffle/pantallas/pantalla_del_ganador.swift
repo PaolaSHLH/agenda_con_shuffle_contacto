@@ -12,45 +12,51 @@ var contacto_alterno = ContactoAgenda(nombre: "Orion", telefono: "52525")
 struct pantalla_del_ganador: View {
     var contacto_a_molestar: ContactoAgenda
     var body: some View {
-        
-        HStack{
-            Spacer()
-            
-            
-            VStack{
-                ZStack{
-                    Circle()
-                        .foregroundColor(.gray)
-                        .frame(width: 150)
-                    Image("Image")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 140)
-                        .background(Color.indigo)
-                        .clipShape(Circle())
-                }
-                .padding(20)
-                Text(contacto_a_molestar.nombre)
-                    .font(.custom("",size:45))
-                Text(contacto_a_molestar.telefono)
-                    .font(.custom("",size:25))
+        ZStack
+        {
+            Color.richBlack
+            HStack{
                 Spacer()
-                ZStack{
-                    Circle()
-                        .foregroundColor(.green)
-                        .frame(width: 80)
-                    
-                    Image(systemName: "phone.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50)
-                        .foregroundColor(.white)
-                        //.clipShape(Circle())
+                
+                
+                VStack{
+                    ZStack{
+                        Circle()
+                            .foregroundColor(.rosewood)
+                            .frame(width: 150)
+                        Image("Image")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 140)
+                            .background(Color.alCrimson)
+                            .clipShape(Circle())
+                    }
+                    .padding(20)
+                    Text(contacto_a_molestar.nombre)
+                        .font(.custom("",size:45))
+                        .foregroundColor(.amarilloR)
+                    Text(contacto_a_molestar.telefono)
+                        .font(.custom("",size:25))
+                        .foregroundColor(.amarilloR)
+                    Spacer()
+                    ZStack{
+                        Circle()
+                            .foregroundColor(.frenchPlum)
+                            .frame(width: 80)
+                        
+                        Image(systemName: "phone.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 50)
+                            .foregroundColor(.amarilloR)
+                            //.clipShape(Circle())
+                    }
+                    Spacer()
                 }
                 Spacer()
             }
-            Spacer()
         }
+        
         
     }
 }

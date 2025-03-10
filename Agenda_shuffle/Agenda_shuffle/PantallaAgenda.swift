@@ -22,6 +22,13 @@ var contactos = [
 
     
 ]
+enum PantallasDisponibles: String, Identifiable{
+    case pantalla_agregar, pantalla_del_ganador
+    
+    var id: String {
+        rawValue
+    }
+}
 
 struct PantallaAgenda: View {
     var largo_de_pantalla = UIScreen.main.bounds.width
@@ -35,8 +42,12 @@ struct PantallaAgenda: View {
 ]
     @State var mostrar_pantalla_agregar_contacto: Bool = false
     
+    @State var pantalla_a_mostrar: PantallasDisponibles?
     var body: some View {
-
+        HStack{
+            Text("Agenda Contactos")
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+        }
         ScrollView{
             VStack(spacing:10){
                 ForEach(contactos_Actuales){ contacto in
@@ -56,7 +67,7 @@ struct PantallaAgenda: View {
             ZStack{
                 Circle()
                     .frame(width: 100)
-                    .foregroundColor(.mint)
+                    .foregroundColor(.alCrimson)
                /* Circle()
                     .foregroundColor(.indigo)
                     .frame(width: 65,height: 65)*/
@@ -72,7 +83,7 @@ struct PantallaAgenda: View {
             .padding(15)
             .onTapGesture {
                 print("Falta implementar esta parte")
-                mostrar_pantalla_agregar_contacto.toggle()
+                pantalla_a_mostrar = PantallasDisponibles.pantalla_agregar
             
             }
             Spacer()
@@ -80,7 +91,7 @@ struct PantallaAgenda: View {
             ZStack{
                 Circle()
                     .frame(width: 100)
-                    .foregroundColor(.mint)
+                    .foregroundColor(.alCrimson)
                 /*Circle()
                     .foregroundColor(.indigo)
                     .frame(width: 65,height: 65)*/
@@ -96,10 +107,11 @@ struct PantallaAgenda: View {
             .padding(15)
             .onTapGesture {
                 print("lanzar un intent para iniciar la llamada")
+                pantalla_a_mostrar = PantallasDisponibles.pantalla_del_ganador
             
             }
         }
-        .background(Color.gray)
+        .background(Color.cetaBlue)
         .sheet(isPresented: $mostrar_pantalla_agregar_contacto) {
             pantallaAgregarContacto(boton_salir: {mostrar_pantalla_agregar_contacto.toggle()
             },
@@ -110,6 +122,24 @@ struct PantallaAgenda: View {
             }
             )
         }
+        .sheet(item: $pantalla_a_mostrar){ pantalla in
+        switch(pantalla){
+        case .pantalla_agregar:
+        pantallaAgregarContacto ( 
+            boton_salir: {
+                pantalla_a_mostrar = PantallasDisponibles.pantalla_del_ganador
+        },
+        
+        boton_agregar: { nombre, numero in
+            let contacto_nuevo = ContactoAgenda (nombre: nombre, telefono: numero)
+            contactos_Actuales.append(contacto_nuevo)
+            pantalla_a_mostrar = nil
+        }
+        )
+        case .pantalla_del_ganador:
+            Text("Adios mundo")
+            }
+        }.background(Color.richBlack)
     }
 }
 
