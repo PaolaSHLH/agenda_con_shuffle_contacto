@@ -34,6 +34,8 @@ struct PantallaAgenda: View {
     var largo_de_pantalla = UIScreen.main.bounds.width
     var ancho_de_pantalla = UIScreen.main.bounds.height
     
+    @State var contactoGanador: ContactoAgenda? = nil //seleccion aleatoria de uno de los contactos
+    
     @State var contactos_Actuales: [ContactoAgenda] = [
         ContactoAgenda(nombre: "Chanyeol", telefono: "610497"),
         ContactoAgenda(nombre: "Sehun", telefono: "123576"),
@@ -43,34 +45,43 @@ struct PantallaAgenda: View {
     @State var mostrar_pantalla_agregar_contacto: Bool = false
     
     @State var pantalla_a_mostrar: PantallasDisponibles?
+    
     var body: some View {
-        HStack{
-            Text("Agenda Contactos")
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-        }
+        NavigationStack{
+            
+        
+        
         ScrollView{
+                Text("Agenda Contactos")
+                    .foregroundColor(.amarilloR)
+                    .font(.title)
+                    .fontWeight(.bold)
             VStack(spacing:10){
                 ForEach(contactos_Actuales){ contacto in
-                    //Text("\(contacto.nombre)")
-                    ContactoPreview(contacto_a_mostrar: contacto, alPulsar: {print("te envia saludos \(contacto.nombre) desde la pantalla de agenda")})
+                    NavigationLink{
+                        Text("Hola mundo")
+                    } label: {
+                        ContactoPreview(contacto_a_mostrar: contacto, alPulsar: {print("te envia saludos \(contacto.nombre) desde la pantalla de agenda")})
+                    }
+                    
                 }
             }
             
             .frame(alignment: Alignment.center)
             .padding(10)
             //.background(Color.mint)
-
         }
-        //.background(Color.pink)
+        .background(Color.richBlack)
+        
+    }
+        
+        
         
         HStack(alignment: VerticalAlignment.center, spacing: 25){
             ZStack{
                 Circle()
                     .frame(width: 100)
                     .foregroundColor(.alCrimson)
-               /* Circle()
-                    .foregroundColor(.indigo)
-                    .frame(width: 65,height: 65)*/
                 Image(systemName: "plus")
                     .resizable()
                     .scaledToFit()
@@ -106,9 +117,11 @@ struct PantallaAgenda: View {
             }
             .padding(15)
             .onTapGesture {
-                print("lanzar un intent para iniciar la llamada")
-                pantalla_a_mostrar = PantallasDisponibles.pantalla_del_ganador
-            
+                if let contactoSelected = contactos_Actuales.randomElement(){
+                    contactoGanador = contactoSelected
+                    pantalla_a_mostrar = PantallasDisponibles.pantalla_del_ganador
+                }
+                //print("lanzar un intent para iniciar la llamada")
             }
         }
         .background(Color.cetaBlue)
@@ -123,23 +136,27 @@ struct PantallaAgenda: View {
             )
         }
         .sheet(item: $pantalla_a_mostrar){ pantalla in
-        switch(pantalla){
-        case .pantalla_agregar:
-        pantallaAgregarContacto ( 
-            boton_salir: {
-                pantalla_a_mostrar = PantallasDisponibles.pantalla_del_ganador
-        },
-        
-        boton_agregar: { nombre, numero in
-            let contacto_nuevo = ContactoAgenda (nombre: nombre, telefono: numero)
-            contactos_Actuales.append(contacto_nuevo)
-            pantalla_a_mostrar = nil
-        }
-        )
-        case .pantalla_del_ganador:
-            Text("Adios mundo")
+            switch(pantalla){
+            case .pantalla_agregar:
+                pantallaAgregarContacto (
+                    boton_salir: {
+                        pantalla_a_mostrar = nil
+                    },
+                    
+                    boton_agregar: { nombre, numero in
+                        let contacto_nuevo = ContactoAgenda (nombre: nombre, telefono: numero)
+                        contactos_Actuales.append(contacto_nuevo)
+                        pantalla_a_mostrar = nil
+                    }
+                )
+            case .pantalla_del_ganador:
+                if let contacto = contactoGanador{
+                    pantalla_del_ganador(contacto_a_molestar: contacto)
+                }else{
+                    Text("Adios mundo, no se puede molestar a nadie u.u")
+                }
             }
-        }.background(Color.richBlack)
+        }
     }
 }
 

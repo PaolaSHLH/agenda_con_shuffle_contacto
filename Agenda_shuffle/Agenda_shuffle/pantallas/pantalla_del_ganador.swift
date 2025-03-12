@@ -12,14 +12,20 @@ var contacto_alterno = ContactoAgenda(nombre: "Orion", telefono: "52525")
 struct pantalla_del_ganador: View {
     var contacto_a_molestar: ContactoAgenda
     var body: some View {
+        
         ZStack
         {
             Color.richBlack
+                .ignoresSafeArea()
             HStack{
                 Spacer()
-                
-                
+               
+
                 VStack{
+                    Text("Toca Molestar a:")
+                        .foregroundColor(.amarilloR)
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .font(.largeTitle)
                     ZStack{
                         Circle()
                             .foregroundColor(.rosewood)
@@ -31,6 +37,7 @@ struct pantalla_del_ganador: View {
                             .background(Color.alCrimson)
                             .clipShape(Circle())
                     }
+                    
                     .padding(20)
                     Text(contacto_a_molestar.nombre)
                         .font(.custom("",size:45))
@@ -38,7 +45,10 @@ struct pantalla_del_ganador: View {
                     Text(contacto_a_molestar.telefono)
                         .font(.custom("",size:25))
                         .foregroundColor(.amarilloR)
+               
+                        
                     Spacer()
+                    
                     ZStack{
                         Circle()
                             .foregroundColor(.frenchPlum)

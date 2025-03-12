@@ -27,18 +27,24 @@ struct ContactoPreview: View {
             
             Spacer()
             
-            VStack(alignment: HorizontalAlignment.leading, spacing: 10){
+            VStack(alignment: HorizontalAlignment.leading, spacing: 5){
                 Text(contacto_a_mostrar.nombre)
+                    .font(.custom("",size:24))
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .foregroundColor(.amarilloR)
                 Text(contacto_a_mostrar.telefono)
+                    .foregroundColor(.white)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .foregroundColor(.white)
+            
+            
             
             Spacer()
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: 75)
         .background(Color.frenchPlum)
         .clipShape(RoundedRectangle(cornerSize: CGSize(width: 20, height: 10)))
+        
         .onTapGesture {
             alPulsar()
         }
